@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息</title>
+    <!--引入样式-->
+    <link rel="stylesheet" href="element.css"></link>
+</head>
+
+<body>
+    <div id="app">
+    <el-row class="search_input">
+        <el-col :span="6"><el-input v-model="input" placeholder="请输入用户姓名"></el-input></el-col>
+
+        <el-button type="success" style="margin-left:10px" size="mini">查找</el-button>
+        <el-button type="primary" size="mini">添加</el-button>
+    </el-row>
+    <el-table  class="form_table" style="width: 80%" :data="tabledata" >
+        <el-table-column label="姓名" width="150" align="center" prop="name">
+
+        </el-table-column>
+        <el-table-column label="年龄" width="150" align="center"  prop="age">
+        </el-table-column>
+        <el-table-column label="性别" width="150" align="center"  prop="age">
+        </el-table-column>
+        <el-table-column label="住址" width="280" align="center"  prop="sex">
+        </el-table-column>
+        <el-table-column label="电话" width="280" align="center"  prop="address">
+        </el-table-column>
+        <el-table-column label="操作" width="160" align="center"  prop="phone">
+            <template slot-scope="scope">
+                <el-button
+                        size="mini"
+                        @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+                <el-button
+                        size="mini"
+                        type="danger"
+                        @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+            </template>
+        </el-table-column>
+
+    </el-table>
+
+        <el-row type="flex" justify="center" style="margin-top: 40px">
+            <span class="demonstration" style="margin:5px ">总条数 ：{{totalCount}}</span>
+            <el-pagination
+                    background
+                    layout="prev,pager,next"
+                    :page-size="pageSize"
+                    :current-page.sync="pageNum"
+                    :total="totalCount">
+            </el-pagination>
+        </el-row>
+    </div>
+
+
+    <script src="jquery.min.js"></script>
+    <script src="vue.js"></script>
+    <!--引入组件库-->
+    <script src="element.js"></script>
+    <script>
+            new Vue({
+                el:'#app',
+                data:{
+                    tabledata:[{name:'qtm',age:15,sex:'男',address:'东莞市寮步',phone:'1154821864112'}],
+                    page:'',
+                    pageSize:1,
+                    totalCount:100,
+                    pageNum:8,
+
+                },
+                methods:{
+
+
+                }
+
+
+            });
+
+
+    </script>
+
+<style>
+    .el-table .warning-row {
+        background: oldlace;
+    }
+
+    .el-table .success-row {
+        background: #f0f9eb;
+    }
+    .search_input{
+        display: flex;
+        margin-left: 300px;
+        margin-top:200px;
+    }
+    .form_table{
+       position: relative;
+        margin-top: 70px;
+        margin-left: 250px;
+    }
+
+</style>
+</body>
+
+</html>
